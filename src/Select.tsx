@@ -46,9 +46,24 @@ const Select = ({ multiple, value, onChange, options }: selectProps) => {
       <div
         onBlur={() => setIsOpen(false)}
         tabIndex={1}
-        className="w-96 grid relative grid-cols-[85%_15%] gap-y-3 border-black border-2 h-10"
+        className="w-96 grid relative grid-cols-[85%_15%] gap-y-3 border-black border-2 h-14"
       >
-        <div className="pt-1 mx-2">{multiple ? value.map((m) => (<button>{m.label}</button>)): value?.label}</div>
+        <div className="pt-1 my-1 px-2 flex h-10">
+          {multiple ? 
+            value.map((m) => 
+              (
+                <div className="flex px-2 items-center pl-3 mx-1 gap-2 border-2 rounded-3xl border-gray-500">
+                  {m.label}
+                  <button 
+                  className="text-sm h-fit border-l-2 w-4 border-black"
+                  onClick={() => onChange(value.filter(item => item.value !== m.value))}>
+                    &times;
+                  </button>
+                </div>
+              )  
+            ): value?.label
+          }
+        </div>
         <div className="flex absolute items-center right-0 top-0 bottom-0 justify-between">
           <button
             onClick={(e) => {
@@ -73,7 +88,7 @@ const Select = ({ multiple, value, onChange, options }: selectProps) => {
           </svg>
         </div>
         <ul
-          className={`mt-12 w-96 absolute left-0 border-2 border-black rounded-md  ${
+          className={`mt-16 w-96 absolute left-0 border-2 border-black rounded-md  ${
             isOpen ? "block" : "hidden"
           } `}
         >

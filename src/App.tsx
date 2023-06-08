@@ -17,9 +17,16 @@ function App() {
   const [value, setValue] = useState<typeof options[0] | undefined>(options[0])
   const [value1, setValue1] = useState<selectOptions[]>([options[0]])
   return (
-    <div>
-      <Select options={options} value={value} onChange={o => setValue(o)}/>
-      <Select multiple={true} options={options} value={value1} onChange={o => setValue1(o)}/>
+    <div className="flex">
+      <div>
+        <p className="text-4xl font-bold text-center mb-3">Single Selection</p>
+        <Select options={options} value={value} onChange={o => setValue(o)}/>
+      </div>
+      <div>
+        <p className="text-4xl font-bold text-center mb-3">Multiple Selection</p>
+        {/* <Select options={options} value={value} onChange={o => setValue(o)}/> */}
+        <Select multiple={true} options={options} value={value1} onChange={o => setValue1(o)}/>
+      </div>
       {/* <input type="search" id=""
       className="h-9 border-black border-2 w-96"
       />
